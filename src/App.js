@@ -7,6 +7,12 @@ import About from "./pages/About";
 import Product from "./pages/Product";
 import SharedLayout from "./pages/SharedLayout";
 import ShopPage from "./pages/shop/shop.component";
+import SignInAndSignUpComponent from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+import AuthContextProvider from "./context/AuthContext";
+import Contact from "./pages/contact/contact.component";
+import {ToastContainer} from "react-toastify";
+import React from "react";
 
 const HatPages = () => {
 
@@ -29,7 +35,8 @@ const TopPicID = () => {
 
 function App() {
     return (
-       <BrowserRouter>
+        <AuthContextProvider>
+        <BrowserRouter>
 
            {/* !*Từ khóa exact chỉ : Phải đúng xác định dường dẫn nếu ko có thì nó đúng thì nó lấy hết*!*/}
             <Routes>
@@ -38,12 +45,14 @@ function App() {
                     <Route index element={<HomePage/>}/>
                     <Route path="shop" element={<ShopPage/>}/>
                     <Route path="products" element={<Product/>}/>
+                    <Route path="contact" element={<Contact/>}/>
+                    <Route path="sign-in-and-sign-up" element={<SignInAndSignUp/>}/>
                     <Route path="*" element={<Error/>}/>
                 </Route>
             </Routes>
-
+            <ToastContainer />
         </BrowserRouter>
-
+        </AuthContextProvider>
         /*<ShopPage/>*/
     );
 }
